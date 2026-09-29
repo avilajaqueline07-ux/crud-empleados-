@@ -10,6 +10,16 @@
 </head>
 <body>
 	<h1>Listado de Empleados</h1>
+	<!-- En el atributo href del elemento HTML a, se escribira
+    el nombre o la URL del Servlet que va a recibir la peticion 
+    (request) de mostrar el formulario de alta de empleado, cuando 
+    hayamos creado dicho Servlet -->
+    
+	<!-- Cuando se hace click en el enlace Alta empleado se va a
+      generar una peticion a traves del procolo HTTP utilizando el verbo
+      GET por lo que la peticion tiene que ser recibida en el Servlet
+      en el metodo doGet -->
+	<a href="AltaController">Alta empleado</a>
 
 
 	<!-- A continuacion se renderiza una tabla con el listado de empleados  recibido 
@@ -32,20 +42,19 @@ como atributo de la respuesta la peticion de mostrar el listado de estudiantes -
 			<%
 			// Aqui se recibe como atributo el listado de empleados 
 			List<Empleado> ListadoDeEmpleados = (List<Empleado>) request.getAttribute("empleados");
-			 for (Empleado empleado: ListadoDeEmpleados){
-				 %>
-				 <tr>
-				 <td><%=empleado.nombre() %></td>
-				 <td><%=empleado.apellido1() %></td>
-				 <td><%=empleado.apellido2() %></td>
-				 <td><%=empleado.fechaAlta() %></td>
-				 <td><%=empleado.fechaBaja() != null? empleado.fechaBaja():""%></td>
-				 <td><%=empleado.salario() %></td>
-				 <td><%=empleado.genero() %></td>
-				 </tr>
-				 <%
-				 
-			 }
+			for (Empleado empleado : ListadoDeEmpleados) {
+			%>
+			<tr>
+				<td><%=empleado.nombre()%></td>
+				<td><%=empleado.apellido1()%></td>
+				<td><%=empleado.apellido2()%></td>
+				<td><%=empleado.fechaAlta()%></td>
+				<td><%=empleado.fechaBaja() != null ? empleado.fechaBaja() : ""%></td>
+				<td><%=empleado.salario()%></td>
+				<td><%=empleado.genero()%></td>
+			</tr>
+			<%
+			}
 			%>
 		</tbody>
 	</table>
