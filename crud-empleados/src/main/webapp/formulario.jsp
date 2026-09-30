@@ -50,22 +50,26 @@ para recibir los datos del formulario -->
 				id="primerApellido" name="primerApellido" type="text" placeholder="Primer Apellido aqui"
 				title="Se solicita el Primer Apellido que es requerido"> <label
 				for="segundoApellido">SegundoApellido:</label> <input
-				id="segundoApellido" type="text" placeholder="No es obligatorio">
-			<label for="fechaAlta">Fecha de Alta</label> <input id="fechaAlta"
+				id="segundoApellido" name="segunadoApellido" type="text" placeholder="No es obligatorio">
+			<label for="fechaAlta">Fecha de Alta</label> <input id="fechaAlta" name="fechaAlta"
 				type="date"> <label for="salario">Salario:</label> <input
-				id="salario" type="text">
+				id="salario" name="salario" type="text">
 			<fieldset>
 				<legend>Genero:</legend>
-				<label for="hombre">Hombre:</label> <input id="hombre" type="radio"
+				<label for="hombre">Hombre:</label> <input id="hombre" type="radio" value="HOMBRE"
 					name="genero"> <label for="mujer">Mujer:</label> <input
-					id="mujer" type="radio" name="genero"> <label for="otro">Otro:</label>
-				<input id="otro" type="radio" name="genero">
+					id="mujer" type="radio" value= "MUJER" name="genero" > <label for="otro">Otro:</label>
+				<input id="otro" type="radio" name="genero" value= "OTRO">
 			</fieldset>
 			<label for="foto">Foto del Empleado:</label>
 			 <input id="foto" type="file">
 			 <label for="dpto">Departamento:</label>
-			 	<select id= "dpto">
+			 	<select id= "dpto" name="dpto">
 			 	<option></option>
+			 	<!-- La lista de departamentos se debe de traer de la tabla 
+                 departamentos de la base de datos, porque de esta manera se pueden
+                 agregar o eliminar departamentos sin tener que modificar el codigo
+                  de nuestra aplicacion WEB -->
 			 	<option value="1">RRHH</option>
 			 	<option value="2">INFORMATICA</option>
 			 	<option value="3">CONTABILIDAD</option>
