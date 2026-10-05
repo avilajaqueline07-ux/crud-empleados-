@@ -37,7 +37,7 @@ que tenga la lista de nombres -->
 <!-- Recorremos la lista de nombres, utilizando alguna de las sentencias de 
 bucle que ya conocemos (for clasico, for mejorado, iterador u
 Operaciones de agregado) -->
-<% 
+<%  
 for(String nombre : nombres) {
 %>
 

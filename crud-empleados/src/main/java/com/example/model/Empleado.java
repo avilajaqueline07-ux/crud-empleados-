@@ -13,7 +13,8 @@ LocalDate fechaAlta,
 LocalDate fechaBaja,
 BigDecimal salario,
 Genero genero,
-String foto
+String foto,
+int dpto
 
 		
 		) {

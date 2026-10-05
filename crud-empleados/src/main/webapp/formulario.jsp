@@ -1,3 +1,7 @@
+<%@page import="com.example.model.Departamento"%>
+<%@page import="java.util.List"%>
+<%@page import="com.example.service.DepartamentoServiceImpl"%>
+<%@page import="com.example.service.DepartamentoService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,7 +37,8 @@ vemos cada informacion recogida y asociada a su correspondiente atributo name.
 
 Cuando ya hemos realizado esta comprobacion, en el atributo action escribimos el 
 Servlet o Controlador que va a recibir los datos del formulario, y el metodo lo 
-cambiamos a post --><!-- El mismo servlet AltaController que recibe la peticion de mostrar el 
+cambiamos a post -->
+	<!-- El mismo servlet AltaController que recibe la peticion de mostrar el 
 formulario puede recibir los datos del formulario, porque recibe las peticiones
 por metodos diferentes del protocolo HTTP (get para mostrar el formulario y post
 para recibir los datos del formulario -->
@@ -42,51 +47,60 @@ para recibir los datos del formulario -->
 
 	<fieldset>
 		<legend> Formulario Alta/Modificacion</legend>
-		<form action="#" method="get"> 
-			<label for="nombre">Nombre:</label> <input id="nombre" name="nombre" type="text"
-				placeholder="Su nombre aqui,porfa"
-				title="Se solicita el nombre del empleado para darle de alta">
+		<form action="AltaController" method="post">
+			<label for="nombre">Nombre:</label> <input id="nombre" name="nombre"
+				type="text" placeholder="Su nombre aqui,porfa"
+				title="Se solicita el nombre del empleado para darle de alta" required="required">
 			<label for="primerApellido">Primer Apellido:</label> <input
-				id="primerApellido" name="primerApellido" type="text" placeholder="Primer Apellido aqui"
-				title="Se solicita el Primer Apellido que es requerido"> <label
+				id="primerApellido" name="primerApellido" type="text"
+				placeholder="Primer Apellido aqui"
+				title="Se solicita el Primer Apellido que es requerido" required="required"> <label
 				for="segundoApellido">SegundoApellido:</label> <input
-				id="segundoApellido" name="segunadoApellido" type="text" placeholder="No es obligatorio">
-			<label for="fechaAlta">Fecha de Alta</label> <input id="fechaAlta" name="fechaAlta"
-				type="date"> <label for="salario">Salario:</label> <input
-				id="salario" name="salario" type="text">
+				id="segundoApellido" name="segundoApellido" type="text"
+				placeholder="No es obligatorio"> <label for="fechaAlta">Fecha
+				de Alta</label> <input id="fechaAlta" name="fechaAlta" type="date" required="required">
+			<label for="salario">Salario:</label> <input id="salario"
+				name="salario" type="text">
 			<fieldset>
 				<legend>Genero:</legend>
-				<label for="hombre">Hombre:</label> <input id="hombre" type="radio" value="HOMBRE"
-					name="genero"> <label for="mujer">Mujer:</label> <input
-					id="mujer" type="radio" value= "MUJER" name="genero" > <label for="otro">Otro:</label>
-				<input id="otro" type="radio" name="genero" value= "OTRO">
+				<label for="hombre">Hombre:</label> <input id="hombre" type="radio"
+					value="HOMBRE" name="genero"> <label for="mujer">Mujer:</label>
+				<input id="mujer" type="radio" value="MUJER" name="genero">
+				<label for="otro">Otro:</label> <input id="otro" type="radio"
+					name="genero" value="OTRO">
 			</fieldset>
-			<label for="foto">Foto del Empleado:</label>
-			 <input id="foto" type="file">
-			 <label for="dpto">Departamento:</label>
-			 	<select id= "dpto" name="dpto">
-			 	<option></option>
-			 	<!-- La lista de departamentos se debe de traer de la tabla 
+			<label for="foto">Foto del Empleado:</label> <input id="foto"
+				type="file"> <label for="dpto">Departamento:</label> <select
+				id="dpto" name="dpto" required="required">
+				<option></option>
+				<!-- La lista de departamentos se debe de traer de la tabla 
                  departamentos de la base de datos, porque de esta manera se pueden
                  agregar o eliminar departamentos sin tener que modificar el codigo
                   de nuestra aplicacion WEB -->
-			 	<option value="1">RRHH</option>
-			 	<option value="2">INFORMATICA</option>
-			 	<option value="3">CONTABILIDAD</option>
-			 	</select>
-			 	<label for="telefonos">Telefono(s):</label>
-			 	<input id= "telefono" type="text" placeholder="uno o varios, dseparados por;" 
-			 	title="uno o varios telefonos separados por el punto y coma">
-			 	
-			 	 <label for="emails">Correo(s):</label>
-			 	<input id= "emails" type="text" placeholder="uno o varios, dseparados por;" 
-			 	title="uno o varias direcciones de correos separados por el punto y coma">
-			 	
-			 	<br />
-			 	<br />
-			 	 
-			 	 <input type="submit" value ="Enviar formulario"
-			 	 title ="Recoger y enviar la info de los del controles formulario al servidor">
+
+				<%
+				//conectarse al servicio de departamento para recuperar una lista de todos
+				//los departamentos 
+				DepartamentoService service = new DepartamentoServiceImpl();
+				List<Departamento> departamentos = service.getDepartamento();
+				for (Departamento dpto : departamentos) {
+				%>
+				<option value="<%=dpto.id()%>"><%=dpto.nombre()%></option>
+				<%
+				}
+				%>
+			</select> <label for="telefonos">Telefono(s):</label> <input id="telefonos"
+				name="telefonos" type="text"
+				placeholder="uno o varios, dseparados por;"
+				title="uno o varios telefonos separados por el punto y coma">
+
+			<label for="emails">Correo(s):</label> <input id="emails"
+				name="emails" type="text"
+				placeholder="uno o varios, dseparados por;"
+				title="uno o varias direcciones de correos separados por el punto y coma">
+
+			<br /> <br /> <input type="submit" value="Enviar formulario"
+				title="Recoger y enviar la info de los del controles formulario al servidor">
 		</form>
 	</fieldset>
 
