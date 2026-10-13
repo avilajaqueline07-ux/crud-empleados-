@@ -14,14 +14,15 @@ public class DepartamentoServiceImpl  implements DepartamentoService {
 	@Override
 	public List<Departamento> getDepartamento() throws SQLException {
 		// Conectar con la capa DAO
-		DBConexion dbConexion = new DBConexion("root", "Temp2026");
+		//DBConexion dbConexion = new DBConexion("root", "Temp2026");
 		
 		List<Departamento> departamentos= new ArrayList<>();
 		
 		ResultSet rs=null;
-		Connection connection = null;
-		try {
-		connection= dbConexion.getConexion();
+		//Connection connection = null;
+		try (DBConexion dbConexion = new DBConexion("root", "Temp2026") ;
+			Connection connection = dbConexion.getConexion()){
+		//connection= dbConexion.getConexion();
 		rs = dbConexion.getDepartamentos(connection);
 		
 		// Recorrer el ResultSet, que es la variable rs, y crear 
@@ -36,20 +37,11 @@ public class DepartamentoServiceImpl  implements DepartamentoService {
 			
 		}
 		
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-		if(connection != null)
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 		}
-		
+
 		return departamentos;
 	}
 
