@@ -13,4 +13,7 @@ public interface EmpleadoService {
 	 */
 	List<Empleado> dameEmpleados() throws SQLException;
 
+	// Metodo para persistir un empleado 
+	public void persistirEmpleado (Empleado empleado, 
+			List<String> numerosTelefono, List<String> direccionesCorreo) throws SQLException;
 }
